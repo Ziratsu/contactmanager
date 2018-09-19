@@ -3,15 +3,14 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Consumer } from "../../context";
 import axios from "axios";
-
 class Contact extends Component {
   state = {
-    showContactInfo: false
+    showContactInfo: true
   };
 
   onDeleteClick = async (id, dispatch) => {
     try {
-      await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+      await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`); //asynchrome nouvelle version
       dispatch({ type: "DELETE_CONTACT", payload: id });
     } catch (e) {
       dispatch({ type: "DELETE_CONTACT", payload: id });
@@ -29,7 +28,7 @@ class Contact extends Component {
           return (
             <div className="card card-body mb-3">
               <h4>
-                {name}{" "}
+                {name}
                 <i
                   onClick={() =>
                     this.setState({

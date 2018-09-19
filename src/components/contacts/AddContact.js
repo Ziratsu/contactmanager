@@ -13,7 +13,6 @@ class AddContact extends Component {
 
   onSubmit = async (dispatch, e) => {
     e.preventDefault();
-
     const { name, email, phone } = this.state;
 
     // Check For Errors
@@ -21,12 +20,10 @@ class AddContact extends Component {
       this.setState({ errors: { name: "Name is required" } });
       return;
     }
-
     if (email === "") {
-      this.setState({ errors: { email: "Email is required" } });
+      this.setState({ errors: { email: "email is required" } });
       return;
     }
-
     if (phone === "") {
       this.setState({ errors: { phone: "Phone is required" } });
       return;
@@ -42,10 +39,9 @@ class AddContact extends Component {
       "https://jsonplaceholder.typicode.com/users",
       newContact
     );
-
     dispatch({ type: "ADD_CONTACT", payload: res.data });
 
-    // Clear State
+    // clear State
     this.setState({
       name: "",
       email: "",
@@ -95,6 +91,7 @@ class AddContact extends Component {
                     onChange={this.onChange}
                     error={errors.phone}
                   />
+
                   <input
                     type="submit"
                     value="Add Contact"

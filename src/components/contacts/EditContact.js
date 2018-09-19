@@ -13,9 +13,7 @@ class EditContact extends Component {
 
   async componentDidMount() {
     const { id } = this.props.match.params;
-    const res = await axios.get(
-      `https://jsonplaceholder.typicode.com/users/${id}`
-    );
+    const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
 
     const contact = res.data;
 
@@ -28,7 +26,6 @@ class EditContact extends Component {
 
   onSubmit = async (dispatch, e) => {
     e.preventDefault();
-
     const { name, email, phone } = this.state;
 
     // Check For Errors
@@ -36,33 +33,16 @@ class EditContact extends Component {
       this.setState({ errors: { name: "Name is required" } });
       return;
     }
-
     if (email === "") {
-      this.setState({ errors: { email: "Email is required" } });
+      this.setState({ errors: { email: "email is required" } });
       return;
     }
-
     if (phone === "") {
       this.setState({ errors: { phone: "Phone is required" } });
       return;
     }
 
-    const updContact = {
-      name,
-      email,
-      phone
-    };
-
-    const { id } = this.props.match.params;
-
-    const res = await axios.put(
-      `https://jsonplaceholder.typicode.com/users/${id}`,
-      updContact
-    );
-
-    dispatch({ type: "UPDATE_CONTACT", payload: res.data });
-
-    // Clear State
+    // clear State
     this.setState({
       name: "",
       email: "",
@@ -84,7 +64,7 @@ class EditContact extends Component {
           const { dispatch } = value;
           return (
             <div className="card mb-3">
-              <div className="card-header">Edit Contact</div>
+              <div className="card-header">Add Contact</div>
               <div className="card-body">
                 <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                   <TextInputGroup
@@ -112,6 +92,7 @@ class EditContact extends Component {
                     onChange={this.onChange}
                     error={errors.phone}
                   />
+
                   <input
                     type="submit"
                     value="Update Contact"
