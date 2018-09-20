@@ -1,7 +1,0 @@
-{
-  "emmet.extensionsPath": "",
-  "emmet.syntaxProfiles": {
-    "javascript": "jsx"
-  },
-  "git.ignoreLimitWarning": true
-}
